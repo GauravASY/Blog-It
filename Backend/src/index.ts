@@ -4,6 +4,7 @@ import {sign} from 'hono/jwt'
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import {signUpInput, signInInput} from '@omega-r-npm/medium-common'
+import {cors} from 'hono/cors'
 
 const app = new Hono<{
   Bindings : {
@@ -12,6 +13,9 @@ const app = new Hono<{
   }
 }>()
 
+app.use("/*", cors({
+  origin : "http://localhost:5173"
+}));
 app.route("/api/v1/blog", blogRoute);
 
 app.post('/api/v1/signup', async (c) => {
