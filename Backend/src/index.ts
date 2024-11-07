@@ -13,9 +13,10 @@ const app = new Hono<{
   }
 }>()
 
-app.use("/*", cors({
-  origin : "https://blog-it-ucq1.vercel.app/"
+app.use(cors({
+  origin: "https://blog-it-ucq1.vercel.app"
 }));
+
 app.route("/api/v1/blog", blogRoute);
 
 app.post('/api/v1/signup', async (c) => {
