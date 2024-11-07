@@ -17,7 +17,7 @@ function SignUp() {
     }
     try {
       const {data} = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
-        email, name, password
+        email, password, name
       }, {
         headers: {
           'Content-Type' : 'application/json'
