@@ -14,7 +14,7 @@ function Design() {
     <div className="flex-grow flex items-center pl-32 relative">
         <div className="flex flex-col gap-6">
           <div className="text-gray-900 font-extrabold text-8xl w-2/3 font-serif z-10">Human stories & ideas</div>
-          <div className="text-gray-900 font-bold text-3xl font-serif">A place to read, write, and deepen your understanding</div>
+          <div className="text-gray-900 font-bold text-3xl font-serif z-10">A place to read, write, and deepen your understanding</div>
           <Button className="w-fit text-2xl py-6 px-4 rounded-full text-center hover:scale-105 transition-all ease-in-out"
             onClick={handleStartReading}
           >Start Reading</Button>

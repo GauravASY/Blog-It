@@ -17,7 +17,7 @@ function App() {
   }, [])
 
   return (
-    <div className="h-screen w-screen flex flex-col">
+    <div className="h-screen w-screen flex flex-col overflow-hidden">
       <Navbar token={token}/>
       <Design/>
       <Footer />
