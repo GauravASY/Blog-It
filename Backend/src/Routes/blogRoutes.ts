@@ -50,6 +50,7 @@ blogRoute.post("/", async (c) => {
         title : body.title,
         content : body.content,
         authorId : c.get("userId"),
+        date : body.date
       }
     })
     return c.json({id: blog.id, message : "Blog Posted", success : true});
@@ -88,15 +89,57 @@ blogRoute.put("/", async (c) => {
 blogRoute.get("/bulk", async(c)=>{
   const prisma = new PrismaClient({
     datasourceUrl : c.env.DATABASE_URL,
-  })
+  }).$extends(withAccelerate());
 
   try {
-    const blogs = await prisma.post.findMany();
+    const blogs = await prisma.post.findMany({
+      select: {
+        id : true,
+        title : true,
+        content : true,
+        date : true,
+        author : {
+          select : {
+            name : true
+          }
+        }
+      }
+    });
     return c.json({blogs : blogs, message : "Fetching Successfull", success : true});
   } catch (error) {
     return c.json({message : "Fetch error. Can't get list", success : false});
   }
 
+})
+
+blogRoute.get("/my-blogs", async(c)=>{
+  const id = c.get('userId');
+  const prisma = new PrismaClient({
+    datasourceUrl : c.env.DATABASE_URL
+  }).$extends(withAccelerate());
+
+  try {
+    const myBlogs = await prisma.post.findMany({
+      where : {authorId : id},
+      select : {
+        id:true,
+        title : true,
+        content : true,
+        date : true,
+        author : {
+          select :{
+            name : true,
+            email:true,
+            password : true
+          }
+        }
+      }
+    })
+
+    return c.json({blogs : myBlogs, success : true});
+  } catch (error) {
+    return c.json({success : false});
+  }
 })
 
 blogRoute.get("/:id", async (c) => {
@@ -108,6 +151,16 @@ blogRoute.get("/:id", async (c) => {
   try {
     const blog = await prisma.post.findUnique({
       where :{id: userId},
+      select:{
+        title:true,
+        content : true,
+        date : true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      }
     })
     
     return c.json({blog : blog, message : "Fetch successful", success: true});
@@ -115,6 +168,8 @@ blogRoute.get("/:id", async (c) => {
     return c.json({message : "Error In fetching ", success : false})
   }
 });
+
+
 
 
 

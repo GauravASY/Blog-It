@@ -7,8 +7,8 @@ compatibility_flags = [ "nodejs_compat" ]
 # MY_VAR = "my-variable"
 
 [vars]
- DATABASE_URL = ""
- JWT_SECRET = ""
+ DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMTBmZDEzM2UtZGY1MS00NGNlLTgzNmEtMjg2MWQyYTJmNTEwIiwidGVuYW50X2lkIjoiMmNmYTFhODZjNWM0OGVjM2FjZTI1MGU4YWQ0YTI0NzRmZDMzMWIzMTdjMjg1MTVhN2M2NTg0ZDkxMmVhOTQ0MyIsImludGVybmFsX3NlY3JldCI6IjQ4NWJlNzQ4LWE5MjYtNDAzYi1iYjRhLWYxZTJjOGQ4NTg4MyJ9.toN1_B-hn_ZXTw3ja8I8kIXxOqIkyIuC5mJhk___H18"
+ JWT_SECRET = "shinraTensei"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
