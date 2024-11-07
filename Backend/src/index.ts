@@ -14,7 +14,7 @@ const app = new Hono<{
 }>()
 
 app.use("/*", cors({
-  origin : "http://localhost:5173"
+  origin : "https://blog-it-ucq1.vercel.app/"
 }));
 app.route("/api/v1/blog", blogRoute);
 
